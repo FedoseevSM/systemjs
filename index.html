@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Документ без названия</title>
+    <script src="lib/babel/polyfill.min.js"></script>
+    <script src="lib/systemjs/system.js"></script>
+    <script>
+      SystemJS.config({
+        defaultExtension: true,
+        meta: {
+          "*.css": {
+            loader: "css",
+          },
+        },
+        babelOptions: {
+          react: true,
+        },
+        map: {
+          "plugin-babel": "lib/systemjs/plugins/plugin-babel/plugin-babel.js",
+          "systemjs-babel-build":
+            "lib/systemjs/plugins/plugin-babel/systemjs-babel-browser.js",
+          react: "lib/react/react.production.min.js",
+          "react-dom": "lib/react/react-dom.production.min.js",
+          css: "lib/systemjs/plugins/plugin-css/css.js",
+        },
+        transpiler: "plugin-babel",
+      })
+      SystemJS.import("./entry-point.js").then(function (module) {
+        console.log("REACT START")
+      })
+      SystemJS.import("./body.jsx").then(function (module) {
+        console.log("REACT COMPONENT RENDER")
+      })
+    </script>
+  </head>
+  <body>
+    Контент
+    <div id="root"></div>
+    <div id="body"></div>
+  </body>
+</html>
